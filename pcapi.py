@@ -28,3 +28,8 @@ class PostCode(object):
         """Format a postcode to all uppercase with a single whitespace."""
         parts = self.postcode_parts(postcode)
         return parts[0].upper() + ' ' + parts[1] + parts[2].upper()
+
+    def format_codepoint(self, postcode):
+        """Format the postcode in Code-Point Open format."""
+        parts = self.postcode_parts(postcode)
+        return parts[0].upper().ljust(4) + parts[1] + parts[2].upper()

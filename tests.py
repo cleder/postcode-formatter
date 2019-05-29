@@ -21,6 +21,7 @@ def test_validate_all_codepoint_open():
                 reader = csv.reader(csvfile)
                 for row in reader:
                     assert pc.is_valid(row[0])
+                    assert pc.format_codepoint(row[0]) == row[0]
 
 def test_parts():
     """Split a postcode into district, sector and unit."""
@@ -35,3 +36,9 @@ def test_format():
     assert pc.format_postcode('Ng24 \t1Jt') == 'NG24 1JT'
     with pytest.raises(ValueError):
         pc.format_postcode('Ng24 \t1Jt3')
+
+
+def test_format_codepoint():
+    """Format the postcode in Code-Point Open format."""
+    pc = PostCode()
+    assert pc.format_codepoint('Ng24 1Jt') == 'NG241JT'
